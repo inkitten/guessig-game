@@ -2,30 +2,35 @@ import random
 def difficulty():
     while True:
         choosen_diff = input("which difficulty do you want? Easy, Medium, Hard")
+        first = 0
         if choosen_diff == "Easy":
-            first = 0
             second = 10
+            lifes = 3
             break
         elif choosen_diff == "Medium":
-            first = 0
             second = 50
+            lifes = 5
             break
         elif choosen_diff == "Hard" :
-            first = 0
             second = 100
+            lifes = 8
             break
-
-    return first, second
-first, second = difficulty()
+    return first, second , lifes
 def guessing_game():
+    first, second, lifes = difficulty()
     answer = random.randint(first, second)
-    while True:
-        user_guess = int(input("Guess a number between %s and %s" % (first, second) ))
-        if user_guess > answer:
-            print("You guessed too high")
-        elif user_guess < answer:
-            print("You guessed too low")
-        else:
-            print("You guessed correctly \nIt was %s" % answer)
+    while lifes > 0:
+        user_guess = int(input("Guess a number between {0} and {1}".format(first, second)))
+        if user_guess == answer and lifes > 0:
+            print("Correct! The answer was {0}.".format(answer))
             break
+        elif user_guess < answer and lifes > 0:
+            print("You guessed too low")
+            lifes -= 1
+        elif user_guess > answer and lifes > 0:
+            print("You guessed too high")
+            lifes -= 1
+        print("you have %s guesses left" % lifes)
+    if lifes <= 0:
+        print("Sorry, you lose the game, it was {0}".format(answer))
 guessing_game()
