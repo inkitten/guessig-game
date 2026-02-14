@@ -1,7 +1,7 @@
 import random
 def difficulty():
     while True:
-        choosen_diff = input("which difficulty do you want? Easy, Medium, Hard")
+        choosen_diff = input("which difficulty do you want? Easy, Medium, Hard: ")
         first = 0
         if choosen_diff == "Easy":
             second = 10
@@ -20,7 +20,7 @@ def guessing_game():
     min_num, max_num, lives = difficulty()
     answer = random.randint(min_num, max_num)
     while lives > 0:
-        user_guess = int(input("Guess a number between {0} and {1}".format(min_num, max_num)))
+        user_guess = int(input("Guess a number between {0} and {1}: ".format(min_num, max_num)))
         if user_guess == answer:
             print("Correct! The answer was {0}.".format(answer))
             break
